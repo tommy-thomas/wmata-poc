@@ -1,0 +1,50 @@
+<?php
+// src/Service/WMATService.php
+namespace App\Service;
+
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+class WMATService
+{
+    private HttpClientInterface $client;
+    private string $apiKey;
+
+    //WMAT Api URL
+    const API_URL = 'https://api.wmata.com/Rail.svc/json/';
+    
+    public function __construct(HttpClientInterface $client, string $ApiKey)
+    {
+        $this->client = $client;
+        $this->apiKey = $ApiKey;
+    }
+    
+    public function getStations(): array
+    {
+        $response = $this->client->request('GET', 
+            self::API_URL.'jStations',
+            [
+                'headers' => [
+                    'api_key' => $this->apiKey
+                ]
+            ]
+        );
+        
+        return $response->toArray()['Stations'];
+    }
+    
+    public function getArrivals(string $stationCode): array
+    {
+        $response = $this->client->request('GET', 
+            self::API_URL.$stationCode.'/',
+            [
+                'headers' => [
+                    'api_key' => $this->apiKey
+                ]
+            ]
+        );
+        
+        return $response->toArray();
+
+    }
+}

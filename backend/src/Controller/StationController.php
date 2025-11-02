@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Controller;
+
+use App\Service\WMATService;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[AsController]
+class StationController
+{
+    
+    #[Route('/api/stations')]
+    public function getStations(WMATService $service) : JsonResponse
+    {
+        return new JsonResponse($service->getStations());
+    }
+}
