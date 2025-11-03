@@ -11,7 +11,7 @@ class WMATService
     private string $apiKey;
 
     //WMAT Api URL
-    const API_URL = 'https://api.wmata.com/Rail.svc/json/';
+    const API_URL = 'https://api.wmata.com/';
     
     public function __construct(HttpClientInterface $client, string $ApiKey)
     {
@@ -22,7 +22,7 @@ class WMATService
     public function getStations(): array
     {
         $response = $this->client->request('GET', 
-            self::API_URL.'jStations',
+            self::API_URL.'Rail.svc/json/jStations',
             [
                 'headers' => [
                     'api_key' => $this->apiKey
@@ -35,8 +35,8 @@ class WMATService
     
     public function getArrivals(string $stationCode): array
     {
-        $response = $this->client->request('GET', 
-            self::API_URL.$stationCode.'/',
+        $response = $this->client->request('GET',
+            self::API_URL.'StationPrediction.svc/json/GetPrediction/'.$stationCode.'/',
             [
                 'headers' => [
                     'api_key' => $this->apiKey

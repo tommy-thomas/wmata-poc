@@ -10,10 +10,15 @@ use Symfony\Component\Routing\Attribute\Route;
 #[AsController]
 class StationController
 {
-    
     #[Route('/api/stations')]
     public function getStations(WMATService $service) : JsonResponse
     {
         return new JsonResponse($service->getStations());
     }
+
+    #[Route('/api/stations/{stationCode}')]
+    public function getArrivals(WMATService $service, string $stationCode) : JsonResponse
+    {
+        return new JsonResponse($service->getArrivals($stationCode));
+    }   
 }

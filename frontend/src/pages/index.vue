@@ -1,5 +1,5 @@
 <template>
-  <StationList />
+  <Schedule />
 </template>
 
 <script lang="ts" setup>
