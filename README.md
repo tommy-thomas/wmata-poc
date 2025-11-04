@@ -11,7 +11,7 @@
    ``` App\Service\WMATAService:
         arguments:
             $ApiKey: '%env(API_KEY)%'
-            $client: '@http_client' ```
+            $client: '@http_client'
 
 ## Basic Setup
 This is the basic setup for the Vue3 interface backed by a Symfony REST API.
