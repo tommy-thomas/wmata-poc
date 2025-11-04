@@ -1,23 +1,47 @@
-<!-- ParentComponent.vue -->
 <template>
-    <div>
-      <StationList @selected-code="handleStationSelect" />
-      <ArrivalList
-        v-if="selectedCode" 
-        :selected-code="selectedCode"
-        :key="selectedCode"
-      />
+  <div class="header">
+      <img src="../assets/rail.png" alt="logo" />
+     <h1 class="title">WMATA POC</h1>
+  </div>
+ 
+  <div>
+    <StationList @selectedCode="handleStationSelect" />
+
+    <div v-if="selectedCode">
+      <ArrivalList :selected-code="selectedCode" :key="selectedCode" />
     </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  import StationList from './StationList.vue';
-  import ArrivalList from './ArrivalList.vue';
-  
-  const selectedCode = ref(null);
-  
-  const handleStationSelect = (value) => {
-    selectedCode.value = value;    
-  };
-  </script>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import StationList from './StationList.vue';
+import ArrivalList from './Arrivals.vue';
+
+const selectedCode = ref('');
+
+const handleStationSelect = (value) => {
+  console.log('Parent received selectedCode:', value);
+  selectedCode.value = value;
+};
+</script>
+
+<style>
+/* Global styles */
+body {
+  margin-top: 1.5em;
+}
+
+.header img {
+  float: left;
+  width: 6.25em;
+  height: 6.25em;
+}
+
+.header h1 {
+  position: relative;
+  top: 1.3em;
+  left: .625em;
+  margin-bottom: 100px;
+}
+</style>

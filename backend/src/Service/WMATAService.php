@@ -1,11 +1,10 @@
 <?php
-// src/Service/WMATService.php
+// src/Service/WMATAService.php
 namespace App\Service;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
-class WMATService
+class WMATAService
 {
     private HttpClientInterface $client;
     private string $apiKey;
@@ -44,7 +43,7 @@ class WMATService
             ]
         );
         
-        return $response->toArray();
+        return $response->toArray()['Trains'];
 
     }
 }

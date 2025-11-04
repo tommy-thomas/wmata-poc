@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\WMATService;
+use App\Service\WMATAService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,13 +11,13 @@ use Symfony\Component\Routing\Attribute\Route;
 class StationController
 {
     #[Route('/api/stations')]
-    public function getStations(WMATService $service) : JsonResponse
+    public function getStations(WMATAService $service) : JsonResponse
     {
         return new JsonResponse($service->getStations());
     }
 
     #[Route('/api/stations/{stationCode}')]
-    public function getArrivals(WMATService $service, string $stationCode) : JsonResponse
+    public function getArrivals(WMATAService $service, string $stationCode) : JsonResponse
     {
         return new JsonResponse($service->getArrivals($stationCode));
     }   

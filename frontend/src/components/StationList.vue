@@ -1,44 +1,39 @@
-
 <template>
-    <h1>All Stations</h1>
-    <div>
-      <!-- <label for="station-select">All Stations</label> -->
-      <select @change="onStationSelect" id="selected-code" v-model="selectedCode">
-        <option value="" disabled>Please select station</option>
+  <div>
+    <h2>All Stations</h2>
+    <div class="select is-rounded">
+      <select id="station-select" v-model="selectedCode" @change="onStationSelect">
+        <option value="" disabled>Please select a station</option>
         <option v-for="station in stations" :key="station.Code" :value="station.Code">
           {{ station.Name }}
         </option>
       </select>
-      <p v-if="selectedCode">You selected: {{ selectedCode }}</p>
-      <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
     </div>
-  </template>
+    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+</template>
 
 <script setup>
-import { ref , onMounted } from 'vue';
-import axios from 'axios'; // or use native fetch
+import { ref } from 'vue';
+import { useStations } from './composables/useStations';
 
-const stations = ref(null);
-const selectedCode = ref(null);
-const emit = defineEmits(['selected-code']);
-const errorMessage = ref('');
-
-const onStationSelect = () => {
-  emit('selected-code', selectedCode.value);
-};
-
-const fetchStations = async () => {
-      try {
-        const response = await axios.get('http://localhost:8000/api/stations');
-        stations.value = response.data.slice().sort((a, b) => a.Name.localeCompare(b.Name));        
-    } catch (error) {
-        console.error('Error fetching stations:', error);
-        errorMessage.value = 'Failed to load stations. Please try again later.';
-    }
-}
-
-onMounted(() => {
-  fetchStations();
+const props = defineProps({
+  selectedCode: String
 });
 
+const emit = defineEmits(['selectedCode']);
+
+const { stations, errorMessage } = useStations();
+const selectedCode = ref(props.selectedCode || '');
+
+const onStationSelect = () => {
+  console.log('Emitting selectedCode:', selectedCode.value);
+  emit('selectedCode', selectedCode.value);
+};
 </script>
+
+<style scoped>
+.error {
+  color: red;
+}
+</style>
