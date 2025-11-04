@@ -7,15 +7,14 @@
 	* API_KEY=your-api-key-from-wmata
 * Add  the following to your .env.local file in the /frontend
     ` VITE_API_BASE_URL='http://localhost:8000/api' `
-* Add a the following service to /backend/services.yaml
+* Add the following service to /backend/services.yaml
    ``` App\Service\WMATAService:
         arguments:
             $ApiKey: '%env(API_KEY)%'
-            $client: '@http_client'
-            ```
+            $client: '@http_client' ```
 
 ## Basic Setup
-This is the basic setup for the a Vue3 interface backed by a Symfony REST API.
+This is the basic setup for the Vue3 interface backed by a Symfony REST API.
 
 To setup your local instance, run `./setup.sh`. This command will build the local docker images, install php and npm dependencies, and start the containers.
 
