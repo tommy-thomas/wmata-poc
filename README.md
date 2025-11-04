@@ -7,9 +7,12 @@
 	* ` API_KEY=your-api-key-from-wmata `
 * Add  the following to your .env.local file in the /frontend
     * ` VITE_API_BASE_URL='http://localhost:8000/api' `
-* Add the following service to /backend/services.yaml
-   ``` App\Service\WMATAService:
-        arguments:
+* Add the following service to /backend/config/services.yaml
+   ``` 
+       # add more service definitions when explicit configuration is needed
+       # please note that last definitions always *replace* previous ones
+       App\Service\WMATAService:
+         arguments:
             $ApiKey: '%env(API_KEY)%'
             $client: '@http_client'
 
