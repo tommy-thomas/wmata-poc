@@ -4,9 +4,9 @@
 * After running the **Basic Setup** below:
 * You'll need to retrieve an api key from https://developer.wmata.com/.
 * Add the following to your .env.local file in backend/
-	* API_KEY=your-api-key-from-wmata
+	* ` API_KEY=your-api-key-from-wmata `
 * Add  the following to your .env.local file in the /frontend
-    ` VITE_API_BASE_URL='http://localhost:8000/api' `
+    * ` VITE_API_BASE_URL='http://localhost:8000/api' `
 * Add the following service to /backend/services.yaml
    ``` App\Service\WMATAService:
         arguments:
