@@ -6,13 +6,13 @@
 * Add the following to your .env.local file in backend/
 	* API_KEY=your-api-key-from-wmata
 * Add  the following to your .env.local file in the /frontend
-    `VITE_API_BASE_URL='http://localhost:8000/api'`
+    ` VITE_API_BASE_URL='http://localhost:8000/api' `
 * Add a the following service to /backend/services.yaml
-    App\Service\WMATAService:
+   ``` App\Service\WMATAService:
         arguments:
             $ApiKey: '%env(API_KEY)%'
             $client: '@http_client'
-
+            ```
 
 ## Basic Setup
 This is the basic setup for the a Vue3 interface backed by a Symfony REST API.
