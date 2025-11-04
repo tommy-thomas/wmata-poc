@@ -1,4 +1,17 @@
-This is the basic setup for the a Vue3 interface backed by a Symfony REST API.
+## Local Setup
+***Make sure you have a .env.local file in BOTH the /frontend and /backend directories for local config settings***
+
+* After running the **Basic Setup** below:
+* You'll need to retrieve an api key from https://developer.wmata.com/.
+* Add the following to your .env.local file in **backend/**
+	* ` API_KEY=your-api-key-from-wmata `
+* Add  the following to your .env.local file in the **/frontend** directory
+    * ` VITE_API_BASE_URL='http://localhost:8000/api' `
+
+* run ` composer install ` in the root of the **backend/** directory
+
+## Basic Setup
+This is the basic setup for the Vue3 interface backed by a Symfony REST API.
 
 To setup your local instance, run `./setup.sh`. This command will build the local docker images, install php and npm dependencies, and start the containers.
 

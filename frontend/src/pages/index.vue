@@ -1,5 +1,5 @@
 <template>
-  <HelloWorld />
+  <Schedule />
 </template>
 
 <script lang="ts" setup>
